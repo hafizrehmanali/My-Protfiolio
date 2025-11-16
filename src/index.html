@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hafiz Rehman Ali — Portfolio (Animated & Responsive)</title>
+
+  <!-- Tailwind CDN (for quick demo). Replace with compiled Tailwind for production -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom Tailwind config (utilities we rely on) -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandGreen: '#2f7a3b'
+          },
+          boxShadow: {
+            'soft-lg': '0 12px 28px rgba(16,24,40,0.12)',
+            'hero-lg': '0 40px 80px rgba(15,23,42,0.12)'
+          },
+          keyframes: {
+            pop: {
+              '0%': { transform: 'scale(1)', opacity: '0' },
+              '60%': { transform: 'scale(1.05)', opacity: '1' },
+              '100%': { transform: 'scale(1)', opacity: '1' }
+            },
+            floaty: {
+              '0%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-6px)' },
+              '100%': { transform: 'translateY(0)' }
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' }
+            }
+          },
+          animation: {
+            pop: 'pop .45s cubic-bezier(.2,.9,.3,1)',
+            floaty: 'floaty 6s ease-in-out infinite',
+            shimmer: 'shimmer 2.5s linear infinite'
+          }
+        }
+      },
+      plugins: []
+    }
+  </script>
+
+  <style>
+    /* small polish beyond Tailwind */
+    body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+    .clip-hero-text { letter-spacing: .02em; line-height: .95; }
+    /* decorative stencil-ish text feel: emulate green block text in hero */
+    .stencil { font-weight: 800; color: #2f7a3b; letter-spacing: .03em; }
+    /* subtle rounded large section container */
+    .section-card { border-radius: 18px; background: #f3f4f6; }
+    /* small pill tag */
+    .pill { border-radius: 999px; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.06); padding: .4rem .9rem; }
+    /* reveal helper */
+    .reveal { transform: translateY(18px); opacity: 0; transition: transform .55s cubic-bezier(.2,.9,.3,1), opacity .55s; }
+    .reveal.visible { transform: translateY(0); opacity: 1; }
+    /* hero green big text layout on smaller screens */
+    @media (max-width: 640px) {
+      .hero-big { font-size: clamp(2.25rem, 8vw, 3.25rem); }
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-800">
+
+  <!-- NAV -->
+  <header class="fixed w-full z-40 bg-white/80 backdrop-blur-md border-b border-slate-100">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <div class="text-xl font-semibold">HRA</div>
+        <nav class="hidden md:flex gap-6 text-sm font-medium">
+          <a href="#about" class="hover:text-slate-600 transition">About</a>
+          <a href="#work" class="hover:text-slate-600 transition">Work</a>
+          <a href="#testimonials" class="hover:text-slate-600 transition">Testimonials</a>
+          <a href="#contact" class="hover:text-slate-600 transition">Contact</a>
+        </nav>
+      </div>
+
+      <div class="flex items-center gap-4 text-xs">
+        <!-- social placeholders - replace icons with your downloaded SVGs -->
+        <span class="hidden md:inline-flex items-center gap-2">
+          <img src="/src/Images/ICons/instagram.png" alt="ig" class="w-4 h-4"/>
+          <img src="/src/Images/ICons/Facebook.png" alt="fb" class="w-4 h-4"/>
+          <img src="/src/Images/ICons/twitter.png" alt="tw" class="w-4 h-4"/>
+          <img src="/src/Images/ICons/linkedin.png" alt="li" class="w-4 h-4"/>
+        </span>
+
+        <!-- small nav for mobile -->
+        <div class="md:hidden">
+          <button id="mobileMenuBtn" aria-label="menu" class="p-2 rounded-md hover:bg-slate-100">
+            ☰
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-20">
+
+    <!-- HERO -->
+    <section class="max-w-6xl mx-auto px-4 py-12">
+      <div class="relative bg-white rounded-lg overflow-hidden section-card p-6 sm:p-10 flex flex-col md:flex-row items-center gap-6 shadow-hero-lg">
+        <!-- left column: small texts -->
+        <div class="hidden md:block w-40 text-sm text-slate-700 leading-tight">
+          <p>I love creating websites, apps, and tech solutions that make life easier and smarter.</p>
+          <p class="mt-6">Every day I learn new things and turn ideas into real, working projects.</p>
+        </div>
+
+        <!-- center column: portrait + surround -->
+        <div class="relative flex-1 flex justify-center items-center">
+          <!-- big green name (staggered) -->
+          <div class="absolute right-4 top-2 hidden lg:block stencil clip-hero-text hero-big text-[72px] leading-tight select-none">
+            HAFIZ <br> REHMAN <br> ALI
+          </div>
+
+          <div class="relative z-20 transform transition-transform duration-300 hover:scale-105">
+            <!-- Example path you gave (change to your actual file). Keep quotes if path has spaces. -->
+            <img src="/src/Images/Front.png"
+                 alt="Hafiz hero"
+                 class="w-56 md:w-72 lg:w-80 rounded-md shadow-soft-lg object-cover reveal" />
+          </div>
+        </div>
+
+        <!-- right column: social / small tagline -->
+        <div class="w-44 hidden lg:flex flex-col items-start gap-4">
+          <div class="text-sm font-semibold">HI There! I go by the name</div>
+          <!-- social labels (replace with icons) -->
+          <div class="flex flex-col gap-2 text-xs">
+            <span class="flex items-center gap-2"><img src="/src/Images/ICons/instagram.png" class="w-4 h-4" alt=""> INSTAGRAM</span>
+            <span class="flex items-center gap-2"><img src="/src/Images/ICons/twitter.png" class="w-4 h-4" alt=""> TWITTER</span>
+            <span class="flex items-center gap-2"><img src="/src/Images/ICons/linkedin.png" class="w-4 h-4" alt=""> LINKEDIN</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="max-w-6xl mx-auto px-4 py-10">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+        <div class="lg:col-span-2">
+          <div class="inline-flex items-center gap-3 mb-4">
+            <span class="px-3 py-1 border rounded-full text-xs">ABOUT ME</span>
+          </div>
+
+          <h2 class="text-[clamp(1.05rem,2vw,1.6rem)] font-bold mb-4">Curious about me? Here you go</h2>
+
+          <p class="text-sm text-slate-700 mb-4 leading-relaxed">I'm Hafiz Rehman Ali — a front-end developer in progress with a strong creative background. I enjoy building clean, modern and visually balanced websites using HTML, CSS, and Tailwind CSS. Tech, design, and creativity have always been a part of my routine, and now I’m shaping them into something meaningful.</p>
+
+          <article class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="reveal bg-white p-5 rounded-xl shadow-soft-lg">
+              <h3 class="font-semibold mb-2">Profile</h3>
+              <p class="text-sm text-slate-700 leading-relaxed">I come from a mixed background of content writing, graphic design, and now web development. I write everything from blog-style copy to structured professional text which helps in communication and branding.</p>
+            </div>
+
+            <div class="reveal bg-white p-5 rounded-xl shadow-soft-lg">
+              <h3 class="font-semibold mb-2">Creative + Code</h3>
+              <p class="text-sm text-slate-700 leading-relaxed">On the creative side I experiment with layouts, color systems, logos and minimal visual identities. Now I blend that with front-end development to create functional and visually strong digital experiences.</p>
+            </div>
+          </article>
+        </div>
+
+        <aside class="flex flex-col gap-6 items-center lg:items-start">
+          <!-- round portrait -->
+          <div class="w-48 h-48 rounded-2xl overflow-hidden shadow-lg transform transition duration-300 hover:scale-105 reveal">
+            <img src="/src/Images/Profile.jpeg" alt="profile" class="w-full h-full object-cover"/>
+          </div>
+
+          <div class="text-center lg:text-left">
+            <p class="text-sm font-semibold">My Expertise</p>
+            <p class="text-xs text-slate-600">Design • Writing • Front-end</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- FOCUS / EXPERTISE -->
+    <section class="max-w-6xl mx-auto px-4 py-8">
+      <div class="bg-white p-6 rounded-xl shadow-soft-lg reveal">
+        <h3 class="text-lg font-bold mb-4">I focus on:</h3>
+
+        <div class="flex flex-col md:flex-row gap-6">
+          <ul class="flex-1 list-inside space-y-2 text-sm text-slate-700">
+            <li class="flex items-start gap-3"><span class="pill">•</span> Clean UI layouts</li>
+            <li class="flex items-start gap-3"><span class="pill">•</span> Modern design principles</li>
+            <li class="flex items-start gap-3"><span class="pill">•</span> Responsive web development</li>
+          </ul>
+
+          <ul class="flex-1 list-inside space-y-2 text-sm text-slate-700">
+            <li class="flex items-start gap-3"><span class="pill">•</span> Clear and impactful writing</li>
+            <li class="flex items-start gap-3"><span class="pill">•</span> Branding and creative visuals</li>
+            <li class="flex items-start gap-3"><span class="pill">•</span> Rapid prototyping & iteration</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK FACTS -->
+    <section class="max-w-6xl mx-auto px-4 py-6">
+      <div class="bg-white p-6 rounded-xl shadow-soft-lg reveal">
+        <h4 class="font-semibold mb-3">A few quick facts about me:</h4>
+        <ul class="text-sm space-y-2 text-slate-700">
+          <li>💻 Front-end developer in progress (HTML, CSS, Tailwind CSS)</li>
+          <li>✍️ Experienced content writer — creative, technical & professional</li>
+          <li>🎨 Graphic designer — logos, branding & clean visual layouts</li>
+          <li>🧭 Interested in UI/UX design and modern digital experiences</li>
+          <li>🔨 Love building small projects and experimenting with new ideas</li>
+          <li>📈 Always learning, improving, and leveling up my skills</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- WORK (Project Cards) -->
+    <section id="work" class="max-w-6xl mx-auto px-4 py-10">
+      <div class="text-center mb-6">
+        <span class="px-4 py-2 border rounded-full text-sm">WORK</span>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2">
+        <!-- card 1 -->
+        <article class="bg-white rounded-2xl p-5 shadow-soft-lg transform transition hover:-translate-y-2 hover:shadow-xl reveal">
+          <div class="flex gap-4 items-start">
+            <img src="/src/Images/Ai chatbot.png" alt="project" class="w-28 h-20 object-cover rounded-md shadow" />
+            <div class="flex-1">
+              <h5 class="font-semibold mb-1">HelpStar AI Chatbot System</h5>
+              <p class="text-xs text-slate-600 mb-3">A robust conversational AI built as a semester project. Core built in C# with secure API architecture and extensible DB integration.</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="text-xs pill">C#</span>
+                <span class="text-xs pill">API Integration</span>
+                <span class="text-xs pill">SQL/Database</span>
+                <span class="text-xs pill">Auth</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- card 2 (duplicate styled) -->
+        <article class="bg-white rounded-2xl p-5 shadow-soft-lg transform transition hover:-translate-y-2 hover:shadow-xl reveal">
+          <div class="flex gap-4 items-start">
+            <img src="/src/Images/Ai chatbot.png" alt="project" class="w-28 h-20 object-cover rounded-md shadow" />
+            <div class="flex-1">
+              <h5 class="font-semibold mb-1">HelpStar AI Chatbot System</h5>
+              <p class="text-xs text-slate-600 mb-3">Same project listed twice to match original layout — replace with other projects as needed.</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="text-xs pill">C#</span>
+                <span class="text-xs pill">API Integration</span>
+                <span class="text-xs pill">Object-Oriented Design</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="max-w-6xl mx-auto px-4 py-10">
+      <div class="bg-white p-6 rounded-xl shadow-soft-lg text-center reveal">
+        <h4 class="font-semibold mb-2">GET IN TOUCH</h4>
+        <p class="text-sm text-slate-600 mb-4">Have a question or a project idea? I'm always open — feel free to reach out anytime.</p>
+        <div class="flex flex-col md:flex-row gap-6 justify-center items-center">
+          <a href="mailto:96hafizrehmanali@gmail.com" class="inline-flex items-center gap-3 px-4 py-3 border rounded-lg hover:scale-[1.02] transition">📧 96hafizrehmanali@gmail.com</a>
+          <a href="tel:+923153938925" class="inline-flex items-center gap-3 px-4 py-3 border rounded-lg hover:scale-[1.02] transition">📞 0315-3938925</a>
+        </div>
+
+        <div class="mt-6 flex justify-center gap-4 text-xl">
+          <img src="icons/instagram.svg" class="w-6 h-6" alt="">
+          <img src="icons/twitter.svg" class="w-6 h-6" alt="">
+          <img src="icons/facebook.svg" class="w-6 h-6" alt="">
+          <img src="icons/linkedin.svg" class="w-6 h-6" alt="">
+          <img src="icons/github.svg" class="w-6 h-6" alt="">
+        </div>
+
+        <p class="text-xs text-slate-500 mt-6">© 2025 | Designed & coded with ❤️ by Hafiz Rehman Ali</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER / MOBILE MENU (small) -->
+  <div id="mobileMenu" class="fixed inset-0 bg-black/40 hidden z-50">
+    <div class="absolute bottom-0 left-0 right-0 bg-white p-6 rounded-t-2xl">
+      <nav class="flex flex-col gap-4 text-center">
+        <a href="#about" class="py-2">About</a>
+        <a href="#work" class="py-2">Work</a>
+        <a href="#testimonials" class="py-2">Testimonials</a>
+        <a href="#contact" class="py-2">Contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Lightweight scripts: intersection observer for reveals + mobile toggle + small hover tweaks -->
+  <script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Intersection Observer: reveal elements on scroll (snappy)
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          // small pop animation for children tags
+          entry.target.animate([{ transform: 'translateY(10px)', opacity:0 }, { transform: 'translateY(0)', opacity:1 }], {
+            duration: 420, easing: 'cubic-bezier(.2,.9,.3,1)'
+          });
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(r => io.observe(r));
+
+    // Micro-interactions: tags pop on hover
+    document.querySelectorAll('.pill').forEach(el => {
+      el.addEventListener('mouseenter', () => el.style.transform = 'translateY(-4px) scale(1.02)');
+      el.addEventListener('mouseleave', () => el.style.transform = 'translateY(0) scale(1)');
+      el.style.transition = 'transform .22s cubic-bezier(.2,.9,.3,1)';
+    });
+
+    // Quick accessibility: keyboard focus outlines
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Tab') document.documentElement.classList.add('show-focus');
+    });
+  </script>
+</body>
+</html>
