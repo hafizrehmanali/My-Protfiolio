@@ -30,13 +30,11 @@ The goal of this project is to demonstrate my learning progress as a front-end d
 
 * **Figma Design (.fig File):** 
 (https://www.figma.com/design/R7lSg4fVEXCZjLCGHfgBnv/MY-Portfoilio?node-id=0-1&t=H89VU4h1fG9SSHlx-1)*
-sorry to say but this desgin if modifiy a lot during the implementation process as i thought it can be improve so i did it 
 
 ### The Figma design includes:
 
 * Hero / Homepage Section
 * About Section
-* Skills Section
 * Profile Section
 * Expertise Section
 * Projects Showcase
