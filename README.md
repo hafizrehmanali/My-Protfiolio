@@ -67,6 +67,9 @@ https://docs.google.com/document/d/1wN93TxV0lXSnS9CcxtLdJ5ylX72FC5B--BEzcsZWUoo/
 **Statement on Use of AI Assistance**
 https://docs.google.com/document/d/1Ryx89kl5WgXGmS4_lrWvTMf6knnMOLwM_p3aS_L2e90/edit?usp=sharing
 
+**Google Drive All Think Relate To Project**
+https://drive.google.com/drive/folders/1KITf037YRx6qQ3hJ-2jLPVgEiwNpeVr3?usp=sharing
+
 ### References Used
 
 1. Inspiration from modern portfolios for layout & minimalism
